@@ -12,7 +12,13 @@ namespace SchoolApiFramewirk.Services
 {
     public class GroupService : IGroupService
     {
-        private DataContext _context = new DataContext();
+        private readonly DataContext _context;
+
+        public GroupService(DataContext context)
+        {
+            _context = context;
+        }
+
         public async Task<Group> AddGroup(Group group)
         {
             _context.Groups.Add(group);

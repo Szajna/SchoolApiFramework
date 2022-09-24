@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
 using MediatR.Extensions.Autofac.DependencyInjection;
+using SchoolApiFramewirk.Data;
 using SchoolApiFramewirk.Interfaces;
 using SchoolApiFramewirk.Queries;
 using SchoolApiFramewirk.Services;
@@ -23,6 +24,7 @@ namespace SchoolApiFramewirk.App_Start
             builder.RegisterType<StudentService>().As<IStudentService>().InstancePerRequest();
             builder.RegisterType<GroupService>().As<IGroupService>().InstancePerRequest();
             builder.RegisterMediatR(typeof(GetAllStudentsQuery).Assembly);
+            builder.RegisterType<DataContext>().AsSelf().PropertiesAutowired().InstancePerLifetimeScope();
 
             var container = builder.Build();
             var resolver = new AutofacWebApiDependencyResolver(container);

@@ -15,7 +15,7 @@ namespace SchoolApiFramewirk.Models
         public string PostCode { get; set; } = string.Empty;
         public string City { get; set; } = string.Empty;
         public string FatherName { get; set; } = string.Empty;
-        public string GroupId { get; set; }
+        public string GroupId { get; set; } = string.Empty;
         public Student()
         {
             Id = Guid.NewGuid().ToString();

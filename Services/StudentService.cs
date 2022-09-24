@@ -12,7 +12,12 @@ namespace SchoolApiFramewirk.Services
 {
     public class StudentService : IStudentService
     {
-        private DataContext _context = new DataContext();
+        private readonly DataContext _context;
+
+        public StudentService(DataContext context)
+        {
+            _context = context;
+        }
 
         public async Task<Student> AddStudent(Student student)
         {
@@ -31,7 +36,7 @@ namespace SchoolApiFramewirk.Services
 
         public async Task<List<Student>> GetAllStudents()
         {
-            var dupa = await _context.Students.ToListAsync();
+            var dupa = await _context.Students.AsNoTracking().ToListAsync();
             return dupa;
         }
 
